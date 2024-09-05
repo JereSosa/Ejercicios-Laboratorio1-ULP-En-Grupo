@@ -4,28 +4,31 @@
  */
 package tplabo5_ejercicioagenda;
 
-
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
-
-import java.util.*;
-
+/**
+ *
+ * @author Esquina del Vidrio
+ */
 public class Directorio {
     private TreeMap<Long, Contactos> contactos;
 
-    public Directorio() {
-        this.contactos = new TreeMap<>();
+    public Directorio(TreeMap<Long, Contactos> contactos) {
+        this.contactos = contactos;
     }
-
-    public void agregarContacto(Long telefono, Contactos contacto) {
+    
+    public void agregarContacto(long telefono, Contactos contacto){
         contactos.put(telefono, contacto);
     }
-
-    public Contactos buscarContacto(Long telefono) {
+    
+    public Contactos buscarContacto(long telefono){
         return contactos.get(telefono);
     }
-
+    
     public Set<Long> buscarTelefono(String apellido) {
         Set<Long> telefonos = new TreeSet<>();
         for (Map.Entry<Long, Contactos> entry : contactos.entrySet()) {
@@ -50,8 +53,3 @@ public class Directorio {
         return contactos.remove(telefono) != null;
     }
 }
-/**
- *
- * @author Esquina del Vidrio
- */
-

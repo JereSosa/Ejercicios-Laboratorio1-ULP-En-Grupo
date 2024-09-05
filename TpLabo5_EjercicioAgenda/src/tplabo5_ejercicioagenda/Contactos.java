@@ -8,29 +8,27 @@ package tplabo5_ejercicioagenda;
  *
  * @author Esquina del Vidrio
  */
-
-
 public class Contactos {
-    private String DNI;
-    private String nombre;
-    private String apellido;
-    private String ciudad;
-    private String direccion;
+ private long dni;
+ private String nombre;
+ private String apellido;
+ private String ciudad;
+ private String direccion;
 
-    public Contactos(String DNI, String nombre, String apellido, String ciudad, String direccion) {
-        this.DNI = DNI;
+    public Contactos(long dni, String nombre, String apellido, String ciudad, String direccion) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.ciudad = ciudad;
         this.direccion = direccion;
     }
 
-    public String getDNI() {
-        return DNI;
+    public long getDni() {
+        return dni;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setDni(long dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -65,12 +63,6 @@ public class Contactos {
         this.direccion = direccion;
     }
 
-    @Override
-    public String toString() {
-        return "Contacto [DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + 
-               ", ciudad=" + ciudad + ", direccion=" + direccion + "]";
-    }
-} 
    
  
-
+}
