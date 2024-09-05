@@ -87,7 +87,7 @@
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JTañoMateria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JBcargarMateria" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="JBnuevoMateria" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="14" style="1"/>
+              <Font name="Segoe UI Black" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Formulario de Materias"/>
           </Properties>

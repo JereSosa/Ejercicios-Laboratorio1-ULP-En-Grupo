@@ -45,12 +45,12 @@ public class FormAltaMaterias extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(242, 189, 57));
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel1.setText("Formulario de Materias");
 
         jLabel2.setText("ID Materia:");
 
-        JTidMateria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        JTidMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTidMateria.setCaretColor(new java.awt.Color(153, 153, 0));
         JTidMateria.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -65,12 +65,12 @@ public class FormAltaMaterias extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nombre:");
 
-        JTnombreMateria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        JTnombreMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTnombreMateria.setCaretColor(new java.awt.Color(153, 153, 0));
 
         jLabel4.setText("Año:");
 
-        JTañoMateria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        JTañoMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTañoMateria.setCaretColor(new java.awt.Color(153, 153, 0));
         JTañoMateria.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -148,7 +148,7 @@ public class FormAltaMaterias extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(JTañoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBcargarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBnuevoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
