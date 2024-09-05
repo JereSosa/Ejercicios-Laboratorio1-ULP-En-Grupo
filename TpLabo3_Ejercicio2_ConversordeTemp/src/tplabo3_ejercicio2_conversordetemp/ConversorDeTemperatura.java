@@ -65,15 +65,18 @@ public class ConversorDeTemperatura extends javax.swing.JFrame {
         JPPanelTrasero.setBackground(new java.awt.Color(0, 153, 153));
 
         JLConversorDeTemperatura.setBackground(new java.awt.Color(51, 204, 255));
+        JLConversorDeTemperatura.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         JLConversorDeTemperatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLConversorDeTemperatura.setText("Conversor de temperatura:");
         JLConversorDeTemperatura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         JLConversorDeTemperatura.setOpaque(true);
 
+        JLIngreseTemperatura.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         JLIngreseTemperatura.setText("Ingrese una temperatura en grados Celsius");
 
+        JBBotonTransformador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         JBBotonTransformador.setText("Convertir a FARENHEIT");
-        JBBotonTransformador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBBotonTransformador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JBBotonTransformador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBBotonTransformadorActionPerformed(evt);
@@ -97,17 +100,17 @@ public class ConversorDeTemperatura extends javax.swing.JFrame {
                 .addComponent(JLConversorDeTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPPanelTraseroLayout.createSequentialGroup()
-                .addGap(0, 198, Short.MAX_VALUE)
+                .addGap(0, 164, Short.MAX_VALUE)
                 .addComponent(JLIngreseTemperatura)
                 .addGap(196, 196, 196))
             .addGroup(JPPanelTraseroLayout.createSequentialGroup()
                 .addGroup(JPPanelTraseroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPPanelTraseroLayout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(JBBotonTransformador, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPPanelTraseroLayout.createSequentialGroup()
                         .addGap(259, 259, 259)
-                        .addComponent(JTCajaDeGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JTCajaDeGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPPanelTraseroLayout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(JBBotonTransformador)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPPanelTraseroLayout.setVerticalGroup(
@@ -121,7 +124,7 @@ public class ConversorDeTemperatura extends javax.swing.JFrame {
                 .addComponent(JTCajaDeGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JBBotonTransformador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
