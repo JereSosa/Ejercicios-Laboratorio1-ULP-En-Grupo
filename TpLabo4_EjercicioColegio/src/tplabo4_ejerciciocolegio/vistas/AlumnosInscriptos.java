@@ -4,16 +4,20 @@
  */
 package tplabo4_ejerciciocolegio.vistas;
 
+import java.util.HashSet;
+import tplabo4_ejerciciocolegio.Alumno;
+
 /**
  *
  * @author ariel
  */
 public class AlumnosInscriptos extends javax.swing.JInternalFrame {
-
+    private HashSet<Alumno> alumnosConMateria;
+    
     /**
      * Creates new form AlumnosInscriptos
      */
-    public AlumnosInscriptos() {
+    public AlumnosInscriptos(HashSet<Alumno> alumnosConMateria) {
         initComponents();
     }
 

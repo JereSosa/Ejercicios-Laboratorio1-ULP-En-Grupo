@@ -44,6 +44,10 @@ public class Alumno {
         return nombre;
     }
 
+    public HashSet<Materia> getMaterias() {
+        return materias;
+    }
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

@@ -7,6 +7,7 @@ package tplabo4_ejerciciocolegio.vistas;
 import java.util.HashSet;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import tplabo4_ejerciciocolegio.Alumno;
 import tplabo4_ejerciciocolegio.Materia;
 
@@ -193,11 +194,23 @@ public class RegistroColegio extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
-        AlumnosInscriptos alumInscriptos = new AlumnosInscriptos();
-        alumInscriptos.setVisible(true);
-        escritorio.add(alumInscriptos);
+        HashSet<Alumno> alumnoConMateria = new HashSet<>();
+        
+        for (Alumno alumno : listaAlumnos) {
+            if(!alumno.getMaterias().isEmpty()) {
+                alumnoConMateria.add(alumno);
+            }
+        }
+        
+        if(!alumnoConMateria.isEmpty()) {
+            AlumnosInscriptos alumInscriptos = new AlumnosInscriptos(alumnoConMateria);
+            escritorio.removeAll();
+            escritorio.repaint();
+            alumInscriptos.setVisible(true);
+            escritorio.add(alumInscriptos);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay ningún alumno inscripto");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
