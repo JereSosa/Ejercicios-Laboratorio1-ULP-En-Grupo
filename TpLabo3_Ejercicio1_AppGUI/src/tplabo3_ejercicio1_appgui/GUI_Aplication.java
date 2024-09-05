@@ -85,8 +85,9 @@ public class GUI_Aplication extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 255));
 
-        JLiniciesesion.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        JLiniciesesion.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         JLiniciesesion.setText("Inicie sesión:");
         JLiniciesesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -115,7 +116,6 @@ public class GUI_Aplication extends javax.swing.JFrame {
             }
         });
 
-        jbOjoabierto.setIcon(new javax.swing.ImageIcon("C:\\Users\\jeso_\\OneDrive\\Desktop\\Imagenes random para JAVA\\Tp GUI Logeando sesion\\ver.png")); // NOI18N
         jbOjoabierto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbOjoabiertoActionPerformed(evt);
@@ -158,7 +158,7 @@ public class GUI_Aplication extends javax.swing.JFrame {
         JLOlvidoSuContraseña.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 10)); // NOI18N
         JLOlvidoSuContraseña.setForeground(new java.awt.Color(51, 51, 255));
         JLOlvidoSuContraseña.setText("Olvido su contraseña?");
-        JLOlvidoSuContraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JLOlvidoSuContraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JLOlvidoSuContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JLOlvidoSuContraseñaMouseClicked(evt);
@@ -171,6 +171,7 @@ public class GUI_Aplication extends javax.swing.JFrame {
             }
         });
 
+        JLingresar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         JLingresar.setText("Ingresar");
         JLingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,8 +179,8 @@ public class GUI_Aplication extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(255, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setText("BIENVENIDO ESTUDIANTE DE LA ULP!");
 
@@ -210,7 +211,7 @@ public class GUI_Aplication extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLOlvidoSuContraseña)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(JLingresar)
                 .addGap(29, 29, 29))
         );
