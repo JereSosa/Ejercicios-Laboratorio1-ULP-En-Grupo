@@ -4,19 +4,22 @@
  */
 package tplabo5_ejercicioagenda.Vistas;
 
+import java.util.TreeMap;
 import javax.swing.JOptionPane;
+import tplabo5_ejercicioagenda.Contactos;
 
 /**
  *
  * @author jeso_
  */
 public class AgendaTelefonicaVista extends javax.swing.JFrame {
-
+        TreeMap<Long, Contactos> Agenda;
     /**
      * Creates new form AgendaTelefonicaVista
      */
     public AgendaTelefonicaVista() {
         initComponents();
+        Agenda = new TreeMap<>();
     }
 
     /**
@@ -29,7 +32,7 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        escritorio = new javax.swing.JPanel();
         JLformularioDeContacto = new javax.swing.JLabel();
         JLdni = new javax.swing.JLabel();
         JTdni = new javax.swing.JTextField();
@@ -54,7 +57,7 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        escritorio.setBackground(new java.awt.Color(51, 51, 51));
 
         JLformularioDeContacto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         JLformularioDeContacto.setForeground(new java.awt.Color(255, 234, 58));
@@ -144,51 +147,71 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         JBbuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JBbuscar.setForeground(new java.awt.Color(255, 255, 255));
         JBbuscar.setText("Buscar");
+        JBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarActionPerformed(evt);
+            }
+        });
 
         JBnuevo.setBackground(new java.awt.Color(0, 0, 0));
         JBnuevo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JBnuevo.setForeground(new java.awt.Color(255, 255, 255));
         JBnuevo.setText("Nuevo");
+        JBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBnuevoActionPerformed(evt);
+            }
+        });
 
         JBguardar.setBackground(new java.awt.Color(0, 0, 0));
         JBguardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JBguardar.setForeground(new java.awt.Color(255, 255, 255));
         JBguardar.setText("Guardar");
+        JBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBguardarActionPerformed(evt);
+            }
+        });
 
         JBborrar.setBackground(new java.awt.Color(0, 0, 0));
         JBborrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JBborrar.setForeground(new java.awt.Color(255, 255, 255));
         JBborrar.setText("Borrar");
+        JBborrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBborrarActionPerformed(evt);
+            }
+        });
 
         JBsalir.setBackground(new java.awt.Color(0, 0, 0));
         JBsalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JBsalir.setForeground(new java.awt.Color(255, 255, 255));
         JBsalir.setText("Salir");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(escritorioLayout.createSequentialGroup()
                                 .addComponent(JLtelefono)
                                 .addGap(18, 18, 18)
                                 .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(escritorioLayout.createSequentialGroup()
                                     .addComponent(JLdni)
                                     .addGap(40, 40, 40)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                                             .addGap(0, 0, Short.MAX_VALUE)
                                             .addComponent(JBbuscar))
                                         .addComponent(JLformularioDeContacto)))
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(JBnuevo)
                         .addGap(18, 18, 18)
@@ -197,62 +220,62 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
                         .addComponent(JBborrar)
                         .addGap(18, 18, 18)
                         .addComponent(JBsalir))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(JLapellido)
                                     .addComponent(JLnombre))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JTapellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(JTnombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(JTdni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JLdireccion)
                                     .addComponent(JLciudad))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(JTciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(JLformularioDeContacto)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLdni)
                     .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBbuscar))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLnombre)
                     .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLapellido)
                     .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLdireccion)
                     .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLciudad)
                     .addComponent(JTciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLtelefono)
                     .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBnuevo)
                     .addComponent(JBguardar)
                     .addComponent(JBborrar)
@@ -264,11 +287,11 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -321,6 +344,47 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El telefono debe ser un número válido.");
     }
     }//GEN-LAST:event_JTtelefonoFocusLost
+
+    private void JBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevoActionPerformed
+        JTdni.setText("");
+        JTnombre.setText("");        
+        JTapellido.setText("");
+        JTdireccion.setText("");
+        JTciudad.setText("");
+        JTtelefono.setText("");        
+    }//GEN-LAST:event_JBnuevoActionPerformed
+
+    private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
+        long dni = Long.parseLong(JTdni.getText());
+        String nombre = JTnombre.getText();
+        String apellido = JTapellido.getText();
+        String direccion = JTdireccion.getText();
+        String ciudad = JTciudad.getText();
+        long telefono = Long.parseLong(JTtelefono.getText());
+        
+        Contactos c1 = new Contactos(dni, nombre, apellido, ciudad, direccion);
+        Agenda.put(telefono, c1);
+        JOptionPane.showMessageDialog(null, "El contacto " + nombre + " se guardo con exito en la agenda!");
+        
+    }//GEN-LAST:event_JBguardarActionPerformed
+
+    private void JBborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBborrarActionPerformed
+        long telefono = Long.parseLong(JTtelefono.getText());
+        try {
+            Agenda.remove(telefono);
+            JOptionPane.showMessageDialog(null, "El numero fue removido de la agenda.");
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "No se borro el numero de telefono correctamente");
+        }
+    }//GEN-LAST:event_JBborrarActionPerformed
+
+    private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        BuscarTelefono a2 = new BuscarTelefono();
+        a2.setVisible(true);
+        escritorio.add(a2);
+    }//GEN-LAST:event_JBbuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,8 +440,8 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
     private javax.swing.JTextField JTdni;
     private javax.swing.JTextField JTnombre;
     private javax.swing.JTextField JTtelefono;
+    private javax.swing.JPanel escritorio;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
