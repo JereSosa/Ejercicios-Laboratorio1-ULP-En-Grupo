@@ -224,6 +224,11 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         JBsalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JBsalir.setForeground(new java.awt.Color(255, 255, 255));
         JBsalir.setText("Salir");
+        JBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBsalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -293,13 +298,15 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
                     .addComponent(JLnombre)
                     .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JLapellido)
                     .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLdireccion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JLdireccion)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addGap(18, 18, 18)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLciudad)
@@ -316,7 +323,7 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
                     .addComponent(JBguardar)
                     .addComponent(JBborrar)
                     .addComponent(JBsalir))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -447,6 +454,20 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JBbuscarActionPerformed
 
+    private void JBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBsalirActionPerformed
+                   int opcion = JOptionPane.showConfirmDialog(
+        this, 
+        "¿Estás seguro de que deseas salir?",
+        "Confirmar salida",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE
+    );
+  
+    if (opcion == JOptionPane.YES_OPTION) {
+        this.dispose();
+    }//GEN-LAST:event_JBsalirActionPerformed
+    }
+   
     /**
      * @param args the command line arguments
      */

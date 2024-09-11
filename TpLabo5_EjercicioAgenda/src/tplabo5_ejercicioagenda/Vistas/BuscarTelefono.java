@@ -261,9 +261,9 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.dispose();
-        AgendaTelefonicaVista vistaPrincipal = new AgendaTelefonicaVista();
-        vistaPrincipal.setVisible(true);
+       this.dispose();
+       AgendaTelefonicaVista vistaPrincipal = new AgendaTelefonicaVista();
+       vistaPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public void llenarTabla(TreeMap<Long, Contactos> agenda) {
