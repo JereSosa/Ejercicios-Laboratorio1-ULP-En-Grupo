@@ -5,6 +5,7 @@
 package tplabo5_ejercicioagenda.Vistas;
 
 import java.util.TreeMap;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import tplabo5_ejercicioagenda.Contactos;
 
@@ -13,15 +14,51 @@ import tplabo5_ejercicioagenda.Contactos;
  * @author jeso_
  */
 public class AgendaTelefonicaVista extends javax.swing.JFrame {
-        TreeMap<Long, Contactos> Agenda;
+        private static TreeMap<Long, Contactos> Agenda;
+
+        
+        
+    public static TreeMap<Long, Contactos> getAgenda() {
+        return Agenda;
+    }
+
     /**
      * Creates new form AgendaTelefonicaVista
      */
-    public AgendaTelefonicaVista() {
-        initComponents();
-        Agenda = new TreeMap<>();
+    public static void setAgenda(TreeMap<Long, Contactos> Agenda) {
+        AgendaTelefonicaVista.Agenda = Agenda;
     }
 
+    public AgendaTelefonicaVista() {
+        
+        initComponents();
+
+        
+        setSize(800, 600);  // Tamaño personalizado (ancho, alto)
+        
+        
+        setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        setVisible(true);
+        Agenda = new TreeMap<>();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        Contactos a1 = new Contactos(39797677,"Jeremias", "Sosa", "Villa mercedes" , "Juan llerena 1024");
+        Contactos a2 = new Contactos(40037038,"Valentina", "Reyes", "San Luis" , "La punta");
+        Contactos a3 = new Contactos(45784555,"Sabrina", "Condori", "Rosario" , "Orellano 231");
+        Contactos a4 = new Contactos(10963691,"Emanuel", "medina", "Buenos aires" , "Lavalle 222");
+        Contactos a5 = new Contactos(11478555,"Nehuen", "Wachenmo", "Marruecos" , "Monaco 212");
+        
+            
+        Agenda.put(Long.valueOf("2657244771"), a1);
+        Agenda.put(Long.valueOf("2664258877"), a2);
+        Agenda.put(Long.valueOf("3414712747"), a3);
+        Agenda.put(Long.valueOf("2657525255"), a4);
+        Agenda.put(Long.valueOf("1154556699"), a5);
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +96,7 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(51, 51, 51));
 
-        JLformularioDeContacto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JLformularioDeContacto.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         JLformularioDeContacto.setForeground(new java.awt.Color(255, 234, 58));
         JLformularioDeContacto.setText("Formulario de Contacto");
 
@@ -193,101 +230,103 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(195, 195, 195)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(escritorioLayout.createSequentialGroup()
-                                .addComponent(JLtelefono)
-                                .addGap(18, 18, 18)
-                                .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(escritorioLayout.createSequentialGroup()
-                                    .addComponent(JLdni)
-                                    .addGap(40, 40, 40)
-                                    .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(JBbuscar))
-                                        .addComponent(JLformularioDeContacto)))
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JLnombre)
+                            .addComponent(JLapellido))
+                        .addGap(46, 46, 46)
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLciudad)
+                            .addComponent(JLdireccion))
+                        .addGap(36, 36, 36)
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JTciudad)
+                            .addComponent(JTdireccion))))
+                .addGap(111, 111, 111)
+                .addComponent(JBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(JLformularioDeContacto))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
                         .addComponent(JBnuevo)
-                        .addGap(18, 18, 18)
+                        .addGap(71, 71, 71)
                         .addComponent(JBguardar)
-                        .addGap(18, 18, 18)
+                        .addGap(75, 75, 75)
                         .addComponent(JBborrar)
-                        .addGap(18, 18, 18)
+                        .addGap(42, 42, 42)
                         .addComponent(JBsalir))
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(escritorioLayout.createSequentialGroup()
-                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(JLapellido)
-                                    .addComponent(JLnombre))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JTapellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JTnombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JTdni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(escritorioLayout.createSequentialGroup()
-                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JLdireccion)
-                                    .addComponent(JLciudad))
-                                .addGap(18, 18, 18)
-                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JTciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addGap(182, 182, 182)
+                        .addComponent(JLtelefono)
+                        .addGap(55, 55, 55)
+                        .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(JLformularioDeContacto)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
+                .addComponent(JLformularioDeContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLdni)
-                    .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBbuscar))
+                    .addComponent(JBbuscar)
+                    .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLnombre)
                     .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLapellido)
                     .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLdireccion)
-                    .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLdireccion))
                 .addGap(18, 18, 18)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLciudad)
                     .addComponent(JTciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(51, 51, 51)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLtelefono)
                     .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(60, 60, 60)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBnuevo)
                     .addComponent(JBguardar)
                     .addComponent(JBborrar)
                     .addComponent(JBsalir))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,6 +336,16 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+  
+    public void cargarContactoEnFormulario(String nombre, String apellido, Long dni, String ciudad, String direccion, Long telefono) {
+    JTnombre.setText(nombre);
+    JTapellido.setText(apellido);
+    JTdni.setText(String.valueOf(dni));
+    JTciudad.setText(ciudad);
+    JTdireccion.setText(direccion);
+    JTtelefono.setText(String.valueOf(telefono));
+}
+    
     private void JTtelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTtelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTtelefonoActionPerformed
@@ -378,12 +427,24 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JBborrarActionPerformed
 
+    
     private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        BuscarTelefono a2 = new BuscarTelefono();
-        a2.setVisible(true);
-        escritorio.add(a2);
+        escritorio.removeAll();  
+        escritorio.repaint();    
+
+        BuscarTelefono buscarTelefono = new BuscarTelefono(AgendaTelefonicaVista.getAgenda());
+        escritorio.add(buscarTelefono);  
+
+        
+        try {
+            buscarTelefono.setMaximum(true);  
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+
+        buscarTelefono.setVisible(true); 
+        buscarTelefono.llenarTabla(AgendaTelefonicaVista.getAgenda());
+
     }//GEN-LAST:event_JBbuscarActionPerformed
 
     /**
