@@ -128,7 +128,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmenuBPrecioActionPerformed
 
     private void jmenuBRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuBRubroActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane.removeAll();
+        jDesktopPane.repaint();
+        VistaBuscarPorRubro vbpr=new VistaBuscarPorRubro(this);
+        vbpr.setVisible(true);
+        jDesktopPane.add(vbpr);
+        vbpr.moveToFront();
+        
     }//GEN-LAST:event_jmenuBRubroActionPerformed
 
     

@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaGProductos extends javax.swing.JInternalFrame {
     
     //lista de rubros posibles (Pueden agregarse más)
-    private static  ArrayList <String> rubro = new ArrayList();
+   private static  ArrayList <String> rubro = new ArrayList();
       {
         rubro.add("Alimentos");
         rubro.add("Deportes");
@@ -474,6 +474,10 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     
        
        
+    }
+
+    public static ArrayList<String> getRubro() {
+        return rubro;
     }
 
 
