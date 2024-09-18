@@ -412,6 +412,43 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        try{
+      
+            Producto prod;
+       Iterator <Producto> iterator = Producto.getProductos().iterator();
+       int cod=Integer.parseInt(jtfCodigo.getText());
+       
+       
+        while (iterator.hasNext()){
+            prod = iterator.next();
+            if (prod.getCodigo()==cod) {
+                iterator.remove();
+                int codigo=Integer.parseInt(jtfCodigo.getText());
+                double precio=Double.parseDouble(jtfPrecio.getText());
+                int stock=(int)jSpinnerStock.getValue();
+                
+                Producto nuevoProd = new Producto(codigo,jtfDescripcion.getText(),precio,stock,(String) jComboBoxRubro.getSelectedItem());
+                Producto.getProductos().add(nuevoProd);
+                
+            }
+        
+        }
+        
+        }catch(Exception e){
+        
+        
+        
+        }finally {
+                   borrarFilasTabla();
+          for (Producto p :Producto.getProductos() ) {
+            
+                Object[] nuevaFila = {p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()};
+                modelo.addRow(nuevaFila);
+            
+        }
+        
+        }
+        
         
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
