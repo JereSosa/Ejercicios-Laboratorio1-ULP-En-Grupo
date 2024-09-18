@@ -4,6 +4,7 @@ package Vistas;
 import TP6Ej2.package1.Producto;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,17 +28,32 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
          
     }
       private boolean nuevo=false;
-      DefaultTableModel modelo = new DefaultTableModel();
+      DefaultTableModel modelo = new DefaultTableModel(){
+          @Override
+          public boolean isCellEditable(int row, int column){
+          
+          return false;
+          }
+      
+      };
     public VentanaGProductos(VistaPrincipal vista) {
         initComponents();
         this.setResizable(false);
         llenarCombo();
          jButtonGuardar.setEnabled(false);
+         System.out.println(Producto.getProductos());
+         if (Producto.getProductos().size()==0) {
+                       jButtonActualizar.setEnabled(false);
+                       jButtonEliminar.setEnabled(false);
+                       
+                }else{jButtonActualizar.setEnabled(true);
+                       jButtonEliminar.setEnabled(true); }
       
     
-        String ids [] = { "Codigo" , "Descripcion","Precio", "Categoria", "Stock"  };
+        String ids [] = { "Codigo" , "Descripcion","Precio", "Stock", "Categoria"  };
         modelo.setColumnIdentifiers(ids);
         jTable1.setModel(modelo);
+       
          
          
          
@@ -69,7 +85,7 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         jButtonEliminar = new javax.swing.JButton();
         jButtonCerrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxFiltrarCategorias = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -122,8 +138,18 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         });
 
         jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonCerrar.setText("Cerrar");
         jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +161,9 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Filtrar Por Categoria");
 
-        jComboBoxFiltrarCategorias.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxFiltrarCategoriasActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -151,7 +177,20 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,7 +219,7 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
                             .addComponent(jtfPrecio)
                             .addComponent(jComboBoxRubro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSpinnerStock, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(jComboBoxFiltrarCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(465, 465, 465))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
@@ -207,7 +246,7 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxFiltrarCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -275,6 +314,12 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
                 int stock=(int) jSpinnerStock.getValue();
                    Producto prod = new Producto(codigo,jtfDescripcion.getText(),precio,stock, (String) jComboBoxRubro.getSelectedItem()) ;
                    Producto.getProductos().add(prod);
+                   if (Producto.getProductos().size()!=0) {
+                       jButtonActualizar.setEnabled(true);
+                       jButtonEliminar.setEnabled(true);
+                       
+                }
+                   
                    TreeSet<Producto> listaProd = new TreeSet();
                    listaProd=Producto.getProductos();
                      for (Producto prod1: listaProd) {
@@ -302,9 +347,9 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     
     //filtro de categorias para la tabla principal
     
-    private void jComboBoxFiltrarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFiltrarCategoriasActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
             borrarFilasTabla();
-       String comp= (String) jComboBoxFiltrarCategorias.getSelectedItem();
+       String comp= (String) jComboBox1.getSelectedItem();
       TreeSet<Producto> listaProd = new TreeSet();
                    listaProd=Producto.getProductos();
         for (Producto p :listaProd ) {
@@ -314,19 +359,68 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
             }
         }
         
-    }//GEN-LAST:event_jComboBoxFiltrarCategoriasActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+    //evento tabla | segun donde haga click obtendra la fila y los valores y los pondra dentro de los jtf para poder eliminar o actualizar
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int fila;
+       
+      fila=  jTable1.getSelectedRow();
+      Object codigo=jTable1.getValueAt(fila,0);
+     Object descripcion=jTable1.getValueAt(fila,1);
+      Object precio =  jTable1.getValueAt(fila,2);
+      Object stock = jTable1.getValueAt(fila, 3);
+      Object rubro = jTable1.getValueAt(fila, 4);
+     jtfCodigo.setText(codigo.toString());
+         jtfDescripcion.setText(descripcion.toString()); 
+           jtfPrecio.setText(precio.toString()); 
+           jSpinnerStock.setValue(stock);
+          jComboBoxRubro.setSelectedItem(rubro);
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
-    
-   //Boton cerrar
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
+    
+    
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+     
+     int pos = Integer.parseInt(jtfCodigo.getText());
+      
+        Iterator<Producto> iterator = Producto.getProductos().iterator();
+        
+       while (iterator.hasNext()){
+           Producto producto=iterator.next();
+           int s = producto.getCodigo();
+           if (s==pos) {
+               iterator.remove();
+           }
+       
+       }
+     
+        
+       
+       borrarFilasTabla();
+          for (Producto p :Producto.getProductos() ) {
+            
+                Object[] nuevaFila = {p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()};
+                modelo.addRow(nuevaFila);
+            
+        }
+        
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
+
+    
     //llena los dos combobox 
     public void llenarCombo(){
        for (String cat : rubro) {
             jComboBoxRubro.addItem(cat);
-            jComboBoxFiltrarCategorias.addItem(cat);
+            jComboBox1.addItem(cat);
         }
     }
        
@@ -352,7 +446,7 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonNuevo;
-    private javax.swing.JComboBox<String> jComboBoxFiltrarCategorias;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxRubro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
