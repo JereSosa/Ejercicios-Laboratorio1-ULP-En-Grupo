@@ -120,11 +120,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmenuBNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuBNombreActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane.removeAll();
+        jDesktopPane.repaint();
+        VistaBuscarPorNombre vbpn =new VistaBuscarPorNombre();
+        vbpn.setVisible(true);
+        jDesktopPane.add(vbpn);
+        vbpn.moveToFront();        
     }//GEN-LAST:event_jmenuBNombreActionPerformed
 
     private void jmenuBPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuBPrecioActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane.removeAll();
+        jDesktopPane.repaint();
+        VistaBuscarPorPrecio vbpp =new VistaBuscarPorPrecio();
+        vbpp.setVisible(true);
+        jDesktopPane.add(vbpp);
+        vbpp.moveToFront();
     }//GEN-LAST:event_jmenuBPrecioActionPerformed
 
     private void jmenuBRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuBRubroActionPerformed

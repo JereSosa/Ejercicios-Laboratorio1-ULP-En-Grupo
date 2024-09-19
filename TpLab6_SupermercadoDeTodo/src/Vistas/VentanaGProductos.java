@@ -3,6 +3,7 @@ package Vistas;
 
 import TP6Ej2.package1.Producto;
 
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -59,6 +60,16 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
          
     }
 
+    public static ArrayList<String> getNombres() {
+        ArrayList<String> nombres = new ArrayList<>();
+        TreeSet<Producto> listaProductos = Producto.getProductos();
+    
+        for (Producto producto : listaProductos) {
+            nombres.add(producto.getDescripcion());
+        }
+        return nombres;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -289,7 +300,8 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         jtfDescripcion.setText("");
         jtfPrecio.setText("");
         jSpinnerStock.setValue(0);
-        nuevo=true;
+        nuevo = true; // Establece nuevo como true
+        jButtonGuardar.setEnabled(false);
         
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
@@ -298,47 +310,40 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jSpinnerStockKeyReleased
 //activa el boton de guardar cuando el spinner cambie su estado y los demas jtf no esten vacios
     private void jSpinnerStockStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerStockStateChanged
-            if (jtfCodigo.getText()!=null && jtfDescripcion.getText()!=null && jtfPrecio.getText()!=null && nuevo==true) {
+            if (!jtfCodigo.getText().trim().isEmpty() &&
+            !jtfDescripcion.getText().trim().isEmpty() &&
+            !jtfPrecio.getText().trim().isEmpty() &&
+                 nuevo) {
              jButtonGuardar.setEnabled(true);
-        }
-        
-        
-        
+            } else {
+            jButtonGuardar.setEnabled(false);
+            }
     }//GEN-LAST:event_jSpinnerStockStateChanged
 //crea obj producto , lo guarda en la lista y lo agrega a la tabla
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
             borrarFilasTabla();
             try {
-                int codigo = Integer.parseInt(jtfCodigo.getText());
-                double precio = Double.parseDouble(jtfPrecio.getText());
-                int stock=(int) jSpinnerStock.getValue();
-                   Producto prod = new Producto(codigo,jtfDescripcion.getText(),precio,stock, (String) jComboBoxRubro.getSelectedItem()) ;
-                   Producto.getProductos().add(prod);
-                   if (Producto.getProductos().size()!=0) {
-                       jButtonActualizar.setEnabled(true);
-                       jButtonEliminar.setEnabled(true);
-                       
-                }
-                   
-                   TreeSet<Producto> listaProd = new TreeSet();
-                   listaProd=Producto.getProductos();
-                     for (Producto prod1: listaProd) {
-                  Object[] nuevaFila = {prod1.getCodigo(),prod1.getDescripcion(),prod1.getPrecio(), prod1.getStock(),prod1.getRubro()};
+        int codigo = Integer.parseInt(jtfCodigo.getText().trim());
+        double precio = Double.parseDouble(jtfPrecio.getText().trim());
+        int stock = (int) jSpinnerStock.getValue();
+        Producto prod = new Producto(codigo, jtfDescripcion.getText().trim(), precio, stock, (String) jComboBoxRubro.getSelectedItem());
+        Producto.getProductos().add(prod);
+        
+        borrarFilasTabla();
+        TreeSet<Producto> listaProd = Producto.getProductos();
+        for (Producto prod1 : listaProd) {
+            Object[] nuevaFila = {prod1.getCodigo(), prod1.getDescripcion(), prod1.getPrecio(), prod1.getStock(), prod1.getRubro()};
             modelo.addRow(nuevaFila);
-            }
-                   
-                   JOptionPane.showMessageDialog(this, "Producto agregado correctamente");
-            
-            }catch(NumberFormatException e){
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Por favor ingrese bien los datos");
-                
-            
-            }finally{
-                nuevo=false;
-                jButtonGuardar.setEnabled(false);
-            
-            }
+        }
+        
+        JOptionPane.showMessageDialog(this, "Producto agregado correctamente");
+    } catch (NumberFormatException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Por favor ingrese bien los datos");
+    } finally {
+        nuevo = false;
+        jButtonGuardar.setEnabled(false); // Desactiva el botón después de guardar
+    }
             
             
             
@@ -349,15 +354,26 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
             borrarFilasTabla();
-       String comp= (String) jComboBox1.getSelectedItem();
-      TreeSet<Producto> listaProd = new TreeSet();
-                   listaProd=Producto.getProductos();
-        for (Producto p :listaProd ) {
-            if (comp.equals(p.getRubro())) {
-                Object[] nuevaFila = {p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()};
-                modelo.addRow(nuevaFila);
-            }
+    
+    
+    String comp = (String) jComboBox1.getSelectedItem();
+    if (comp == null) {
+        return; 
+    }
+    
+    TreeSet<Producto> listaProd = Producto.getProductos();
+    for (Producto p : listaProd) {
+        if (comp.equals(p.getRubro())) {
+            Object[] nuevaFila = {
+                p.getCodigo(),
+                p.getDescripcion(),
+                p.getPrecio(),
+                p.getStock(),
+                p.getRubro()
+            };
+            modelo.addRow(nuevaFila);
         }
+    }
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
     //evento tabla | segun donde haga click obtendra la fila y los valores y los pondra dentro de los jtf para poder eliminar o actualizar
@@ -453,6 +469,7 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     
+    
     //llena los dos combobox 
     public void llenarCombo(){
        for (String cat : rubro) {
@@ -469,12 +486,12 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         for (int i = filas; i >= 0; i--) {
             modelo.removeRow(i);
         }
-    
+    }    
     
     
        
        
-    }
+    
 
     public static ArrayList<String> getRubro() {
         return rubro;

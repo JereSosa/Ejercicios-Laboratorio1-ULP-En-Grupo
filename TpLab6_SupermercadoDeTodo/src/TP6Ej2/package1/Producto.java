@@ -24,6 +24,7 @@ public class Producto implements Comparable<Producto> {
     public Producto() {
     }
 
+    
     public int getCodigo() {
         return codigo;
     }
