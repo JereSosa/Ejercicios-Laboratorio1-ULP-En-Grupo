@@ -41,15 +41,9 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         initComponents();
         this.setResizable(false);
         llenarCombo();
-         jButtonGuardar.setEnabled(false);
-         System.out.println(Producto.getProductos());
-         if (Producto.getProductos().size()==0) {
-                       jButtonActualizar.setEnabled(false);
-                       jButtonEliminar.setEnabled(false);
+         jButtonGuardar.setEnabled(false);  
+        jButtonEliminar.setEnabled(false);
                        
-                }else{jButtonActualizar.setEnabled(true);
-                       jButtonEliminar.setEnabled(true); }
-      
     
         String ids [] = { "Codigo" , "Descripcion","Precio", "Stock", "Categoria"  };
         modelo.setColumnIdentifiers(ids);
@@ -302,6 +296,8 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         jSpinnerStock.setValue(0);
         nuevo = true; // Establece nuevo como true
         jButtonGuardar.setEnabled(false);
+        jButtonActualizar.setEnabled(false);
+        jButtonEliminar.setEnabled(false); 
         
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
@@ -343,6 +339,7 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     } finally {
         nuevo = false;
         jButtonGuardar.setEnabled(false); // Desactiva el botón después de guardar
+        jButtonActualizar.setEnabled(false);
     }
             
             
@@ -378,19 +375,32 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
     //evento tabla | segun donde haga click obtendra la fila y los valores y los pondra dentro de los jtf para poder eliminar o actualizar
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int fila;
-       
+     try{   
+      int fila;
       fila=  jTable1.getSelectedRow();
       Object codigo=jTable1.getValueAt(fila,0);
-     Object descripcion=jTable1.getValueAt(fila,1);
+      Object descripcion=jTable1.getValueAt(fila,1);
       Object precio =  jTable1.getValueAt(fila,2);
       Object stock = jTable1.getValueAt(fila, 3);
       Object rubro = jTable1.getValueAt(fila, 4);
-     jtfCodigo.setText(codigo.toString());
-         jtfDescripcion.setText(descripcion.toString()); 
-           jtfPrecio.setText(precio.toString()); 
-           jSpinnerStock.setValue(stock);
-          jComboBoxRubro.setSelectedItem(rubro);
+      jtfCodigo.setText(codigo.toString());
+      jtfDescripcion.setText(descripcion.toString()); 
+      jtfPrecio.setText(precio.toString()); 
+      jSpinnerStock.setValue(stock);
+      jComboBoxRubro.setSelectedItem(rubro);
+      
+      if (Producto.getProductos().size()!=0) {
+                jButtonActualizar.setEnabled(true);
+                       jButtonEliminar.setEnabled(true); 
+              
+        }else{
+              JOptionPane.showMessageDialog(this, "la tabla no tiene elementos");
+              
+          }
+     }catch(NumberFormatException e){
+         
+          JOptionPane.showMessageDialog(this, "Ingrese bien los datos");
+     }
         
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -402,7 +412,8 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
     
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
      
-     int pos = Integer.parseInt(jtfCodigo.getText());
+    try{
+        int pos = Integer.parseInt(jtfCodigo.getText());
       
         Iterator<Producto> iterator = Producto.getProductos().iterator();
         
@@ -414,16 +425,29 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
            }
        
        }
-     
-        
+       JOptionPane.showMessageDialog(this, "Producto Eliminado Correctamente");
        
-       borrarFilasTabla();
+       
+    }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Ingrese bien los datos");
+    
+    }finally {
+         borrarFilasTabla();
           for (Producto p :Producto.getProductos() ) {
             
                 Object[] nuevaFila = {p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()};
                 modelo.addRow(nuevaFila);
             
         }
+          
+     jButtonActualizar.setEnabled(false);
+     jButtonEliminar.setEnabled(false); 
+    
+    }
+     
+        
+       
+      
         
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
@@ -450,6 +474,8 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
         
         }
         
+        JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+        
         }catch(Exception e){
         
         
@@ -461,7 +487,9 @@ public class VentanaGProductos extends javax.swing.JInternalFrame {
                 Object[] nuevaFila = {p.getCodigo(),p.getDescripcion(),p.getPrecio(), p.getStock(),p.getRubro()};
                 modelo.addRow(nuevaFila);
             
-        }
+             }
+          jButtonActualizar.setEnabled(false);
+          jButtonEliminar.setEnabled(false); 
         
         }
         
